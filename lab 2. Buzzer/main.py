@@ -2,9 +2,12 @@ import pycom
 import time
 from machine import Pin
 from machine import PWM
+import utime
 
 
 PLAYING = False
+COUNT = 0
+TIME_LAST_PRESS = utime.ticks_ms()
 
 E7 = 2637
 F7 = 2794
@@ -26,12 +29,24 @@ green_led_tones = [1865, 3520, 2349]
 
 def buttonEventCallback(arg):
     global PLAYING
+    global TIME_LAST_PRESS
+    global COUNT
 
-    if PLAYING == False:
-        PLAYING = True
-        print("\nButton pressed. \nCurrently not playing.\nPlaying...")
+    time_difference = utime.ticks_ms() - TIME_LAST_PRESS
+    if time_difference >= 1000:
+        COUNT += 1
+        TIME_LAST_PRESS = utime.ticks_ms()
+        
+        print("\nButton pressed " + str(COUNT) + " time(s), time since last " + str(time_difference) + "ms")
+
+        if PLAYING == False:
+            print("Currently not playing. Start playing...")
+            PLAYING = True
+        else:
+            print("Music is already playing.")   
     else:
-        print("\nButton pressed. \nAlready playing. \nCan not play")
+        time_left = 1000 - time_difference
+        print("\nIgnored button press due to contact bounce. Time left for next press is " + str(time_left))
         return
 
 def playNotes(notes, r, y, g):
