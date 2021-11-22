@@ -23,9 +23,6 @@ apin = adc.channel(pin='P16', attn=adc.ATTN_11DB)
 while True:
     raw_adc = apin.value()
     t_res = ThermistorRes(raw_adc)
-    print("Thermistor's resistance: " + str(t_res))
-
     temp = CalculateTemp(t_res)
-    print("Temperature: " + temp)
-
+    print("Temperature: " + str(round(temp, 2)) + "C")
     time.sleep(2)
