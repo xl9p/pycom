@@ -4,12 +4,12 @@ import math
 
 R1 = 10000
 VREF = 3.3
-MAX_BITS_VALUE = 4096
+MAX_DC_VALUE = 4096
 A, B, C = 0.001129148, 0.000234125, 0.0000000876741 # Steinharts A, B, C constants from manufact. 
 
 
 def ThermistorRes(raw_adc):
-    mVol = (raw_adc / MAX_BITS_VALUE) * VREF
+    mVol = (raw_adc / MAX_DC_VALUE) * VREF
     return ((R1 * VREF) / mVol) - R1
 
 def CalculateTemp(t_res):
