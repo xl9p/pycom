@@ -2,29 +2,30 @@ import time
 import machine
 import math
 
+R1 = 10000
+VREF = 3.3
+MAX_BITS_VALUE = 4096
+A, B, C = 0.001129148, 0.000234125, 0.0000000876741 # Steinharts A, B, C constants from manufact. 
+
+
+def ThermistorRes(raw_adc):
+    mVol = (raw_adc / MAX_BITS_VALUE) * VREF
+    return ((R1 * VREF) / mVol) - R1
+
+def CalculateTemp(t_res):
+    return 1 / (A + B*(math.log(t_res)) + C*(math.log(t_res))**3) - 273.15
+
 
 adc = machine.ADC(bits=12)
-apin = adc.channel(pin='P16')
-print(str(apin.value()))
-print(str(apin()))
-m_vol = apin.voltage()
+apin = adc.channel(pin='P16', attn=adc.ATTN_11DB)
 
 
-vol = m_vol / 1000
-res_bal = 10000
-beta = 3950*10**3
-vol_src = 3.3
+while True:
+    raw_adc = apin.value()
+    t_res = ThermistorRes(raw_adc)
+    print("Thermistor's resistance: " + str(t_res))
 
-res = 10000 * ((vol_src / vol) - 1)
-#res_bal * (3.3 / vol - 1)
+    temp = CalculateTemp(t_res)
+    print("Temperature: " + temp)
 
-
-temp_k = (beta * 25) / (beta + (25 * math.log(res / 25)))
-temp_c = temp_k - 273.15
-
-print("Resistance: " + str(res))
-print("Voltage(mV): " + str(m_vol))
-print("Voltage(v): " + str(vol))
-print("Temp: " + str(temp_c))
-
-apin.deinit()
+    time.sleep(2)
