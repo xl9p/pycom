@@ -30,18 +30,21 @@ def buttonEventCallback(arg):
 
 
 def Traffic_Go(g_t, y_t, r_t):
+    print("\nTraffic is allowed to go, do not cross the road.")
     g_t.value(1)
     y_t.value(0)
     r_t.value(0)
     time.sleep(4)
 
 def Pedestrian_Go(g_p, r_p, buzzer):
+    print("\nTraffic is not allowed to go, you can cross the road.")
     g_p.value(1)
     r_p.value(0)
 
     Use_Buzzer(3000, "fast", buzzer)
 
 def All_Stop(g_t, y_t, r_t, r_p, g_p):
+    print("\nNo one is allowed to cross.")
     g_t.value(0)
     y_t.value(0)
     r_t.value(1)
@@ -50,6 +53,7 @@ def All_Stop(g_t, y_t, r_t, r_p, g_p):
     time.sleep(1)
 
 def Traffic_Soon_Stop(g_t, y_t, r_t, r_p, g_p):
+    print("\nTraffic soon will be stopped.")
     g_t.value(0)
     y_t.value(1)
     r_t.value(0)
@@ -59,6 +63,8 @@ def Traffic_Soon_Stop(g_t, y_t, r_t, r_p, g_p):
 
 def Traffic_Soon_Go(g_t, y_t, r_t, r_p, g_p):
     global BUTTON_PRESSED
+
+    print("\nTraffic will be allowed to go soon, do not cross the road.")
     g_t.value(0)
     y_t.value(1)
     r_t.value(1)
@@ -69,6 +75,7 @@ def Traffic_Soon_Go(g_t, y_t, r_t, r_p, g_p):
 
 
 def Pedestrian_Soon_Stop(g_t, y_t, r_t, r_p, g_p, buzzer):
+    print("\nTraffic will be allowed to go soon, finish crossing the road.")
     g_t.value(0)
     y_t.value(1)
     r_t.value(1)
