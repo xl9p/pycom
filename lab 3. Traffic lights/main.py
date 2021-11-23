@@ -32,7 +32,42 @@ def buttonEventCallback(arg):
         return
 
 
+def ledsCheck():
+    global PLAYING
+    redLED_t.value(1)
+    time.sleep(2)
+    redLED_t.value(0)
 
+    time.sleep(2)
+
+    yellowLED_t.value(1)
+    time.sleep(2)
+    yellowLED_t.value(0)
+
+    time.sleep(2)
+        
+    greenLED_t.value(1)
+    time.sleep(2)
+    greenLED_t.value(0)
+        
+    time.sleep(2)
+
+    yellowLED_b.value(1)
+    time.sleep(2)
+    yellowLED_b.value(0)
+
+    time.sleep(2)
+
+    greenLED_p.value(1)
+    time.sleep(2)
+    greenLED_p.value(0)
+
+    time.sleep(2)
+
+    redLED_p.value(1)
+    time.sleep(2)
+    redLED_p.value(0)
+    PLAYING = False
 
 
 # Pins
@@ -53,19 +88,4 @@ buttonPin.callback(Pin.IRQ_FALLING, buttonEventCallback)
 
 while True:
     if PLAYING == True:
-        redLED_t.value(1)
-        yellowLED_t.value(1)
-        greenLED_t.value(1)
-        time.sleep(2)
-        redLED_t.value(0)
-        yellowLED_t.value(0)
-        greenLED_t.value(0)
-
-        yellowLED_b.value(1)
-        greenLED_p.value(1)
-        redLED_p.value(1)
-        time.sleep(2)
-        yellowLED_b.value(0)
-        greenLED_p.value(0)
-        redLED_p.value(0)
-        PLAYING == False
+       ledsCheck()
