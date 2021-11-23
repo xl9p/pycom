@@ -12,8 +12,7 @@ MAX_ADC_VALUE = 1023
 
 
 def ThermistorRes(raw_adc):
-    return R1 * 1/((MAX_ADC_VALUE/raw_adc) - 1)
-    #return R1 * ( (MAX_ADC_VALUE / raw_adc) - 1)
+    return R1 * ( (MAX_ADC_VALUE / raw_adc) - 1)
 
 def CalculateTemp(t_res):
     temp_k = (BETA * AMB_TEMP_K) / (BETA + (AMB_TEMP_K * math.log(t_res / RES_AT_AMB_TEMP)))
