@@ -7,18 +7,20 @@ import utime
 
 BUTTON_PRESSED = False
 TIME_LAST_PRESS = 0
+TIME_LAST_GREEN = utime.ticks_ms()
 E7 = 2637
 
 def buttonEventCallback(arg):
     global BUTTON_PRESSED
     global TIME_LAST_PRESS
+    global TIME_LAST_GREEN
 
     time_last_press_diff = utime.ticks_ms() - TIME_LAST_PRESS
     if time_last_press_diff >= 1000:
         TIME_LAST_PRESS = utime.ticks_ms()
-        print("\nButton pressed " + " time(s), time since last " + str(time_last_press_diff) + "ms")
 
-        if BUTTON_PRESSED == False:
+        time_diff = utime.ticks_ms() - TIME_LAST_GREEN
+        if BUTTON_PRESSED == False and time_diff >= 4000:
             BUTTON_PRESSED = True
             print("Button pressed.")
         else:
@@ -35,7 +37,6 @@ def Traffic_Go(g_t, y_t, r_t, r_p):
     g_t.value(1)
     y_t.value(0)
     r_t.value(0)
-    time.sleep(4)
 
 def Pedestrian_Go(g_p, r_p):
     print("\nTraffic is not allowed to go, you can cross the road.")
