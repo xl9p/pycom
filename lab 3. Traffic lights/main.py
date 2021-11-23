@@ -21,6 +21,7 @@ def buttonEventCallback(arg):
 
         time_diff = utime.ticks_ms() - TIME_LAST_GREEN
         if BUTTON_PRESSED == False and time_diff >= 4000:
+            TIME_LAST_GREEN = utime.ticks_ms()
             BUTTON_PRESSED = True
             print("Button pressed.")
         else:
