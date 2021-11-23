@@ -106,11 +106,11 @@ def Use_Buzzer(tim, speed, buzzer):
         time_diff = utime.ticks_ms() - time_start
         if time_diff >= tim:
             ch.duty_cycle(0)
-            tim = PWM(0, frequency=0)
             break
         tim = PWM(0, frequency=E7)
         ch.duty_cycle(0.2)
         time.sleep(interval)
+        ch.duty_cycle(0)
 
 # Pins
 redLED_t = Pin("P10", mode=Pin.OUT) #Make GPIO P8 an output
