@@ -90,7 +90,7 @@ def Yellow_Button_On(y_b):
 def Yellow_Button_Off(y_b):
     y_b.value(0)
  
-def Use_Buzzer(tim, speed):
+def Use_Buzzer(timer, speed):
     time_start = utime.ticks_ms()
     interval = 0
 
@@ -104,13 +104,13 @@ def Use_Buzzer(tim, speed):
 
     while True:
         time_diff = utime.ticks_ms() - time_start
-        if time_diff >= tim:
-            #ch.duty_cycle(0)
+        if time_diff >= timer:
+            ch.duty_cycle(0)
             break
-        # tim = PWM(0, frequency=2637)
-        # ch.duty_cycle(0.5)
+        tim = PWM(0, frequency=2637)
+        ch.duty_cycle(0.5)
         time.sleep(interval)
-        # ch.duty_cycle(0)
+        ch.duty_cycle(0)
 
 # Pins
 redLED_t = Pin("P10", mode=Pin.OUT) #Make GPIO P8 an output
