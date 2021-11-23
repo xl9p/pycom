@@ -107,7 +107,7 @@ def Use_Buzzer(timer, speed):
         if time_diff >= timer:
             ch.duty_cycle(0)
             break
-        tim = PWM(0, frequency=2637)
+        tim = PWM(0, frequency=1568)
         ch.duty_cycle(0.5)
         time.sleep(interval)
         ch.duty_cycle(0)
