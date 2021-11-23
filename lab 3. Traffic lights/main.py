@@ -41,7 +41,7 @@ def Pedestrian_Go(g_p, r_p, buzzer):
     g_p.value(1)
     r_p.value(0)
 
-    Use_Buzzer(3000, "fast", buzzer)
+    Use_Buzzer(5000, "fast", buzzer)
 
 def All_Stop(g_t, y_t, r_t, r_p, g_p):
     print("\nNo one is allowed to cross.")
@@ -82,7 +82,7 @@ def Pedestrian_Soon_Stop(g_t, y_t, r_t, r_p, g_p, buzzer):
     r_p.value(0)
     g_p.value(1)
 
-    Use_Buzzer(2000, "slow", buzzer)
+    Use_Buzzer(5000, "slow", buzzer)
 
 def Yellow_Button_On(y_b):
     y_b.value(1)
@@ -107,10 +107,10 @@ def Use_Buzzer(tim, speed, buzzer):
         if time_diff >= tim:
             #ch.duty_cycle(0)
             break
-        tim = PWM(0, frequency=2637)
-        ch.duty_cycle(0.5)
+        # tim = PWM(0, frequency=2637)
+        # ch.duty_cycle(0.5)
         time.sleep(interval)
-        ch.duty_cycle(0)
+        # ch.duty_cycle(0)
 
 # Pins
 redLED_t = Pin("P10", mode=Pin.OUT) #Make GPIO P8 an output
