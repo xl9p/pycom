@@ -24,8 +24,6 @@ def buttonEventCallback(arg):
         else:
             print("Button pressed again, ignoring")  
     else:
-        time_left = 1000 - time_last_press_diff
-        print("\nIgnored button press due to contact bounce. Time left for next press is " + str(time_left))
         return
 
 
