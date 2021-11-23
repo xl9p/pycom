@@ -36,12 +36,12 @@ def Traffic_Go(g_t, y_t, r_t):
     r_t.value(0)
     time.sleep(4)
 
-def Pedestrian_Go(g_p, r_p, buzzer):
+def Pedestrian_Go(g_p, r_p):
     print("\nTraffic is not allowed to go, you can cross the road.")
     g_p.value(1)
     r_p.value(0)
 
-    Use_Buzzer(5000, "fast", buzzer)
+    Use_Buzzer(5000, "fast")
 
 def All_Stop(g_t, y_t, r_t, r_p, g_p):
     print("\nNo one is allowed to cross.")
@@ -74,7 +74,7 @@ def Traffic_Soon_Go(g_t, y_t, r_t, r_p, g_p):
     BUTTON_PRESSED = False
 
 
-def Pedestrian_Soon_Stop(g_t, y_t, r_t, r_p, g_p, buzzer):
+def Pedestrian_Soon_Stop(g_t, y_t, r_t, r_p, g_p):
     print("\nTraffic will be allowed to go soon, finish crossing the road.")
     g_t.value(0)
     y_t.value(1)
@@ -82,7 +82,7 @@ def Pedestrian_Soon_Stop(g_t, y_t, r_t, r_p, g_p, buzzer):
     r_p.value(0)
     g_p.value(1)
 
-    Use_Buzzer(5000, "slow", buzzer)
+    Use_Buzzer(5000, "slow")
 
 def Yellow_Button_On(y_b):
     y_b.value(1)
@@ -90,12 +90,12 @@ def Yellow_Button_On(y_b):
 def Yellow_Button_Off(y_b):
     y_b.value(0)
  
-def Use_Buzzer(tim, speed, buzzer):
+def Use_Buzzer(tim, speed):
     time_start = utime.ticks_ms()
     interval = 0
 
     tim = PWM(0, frequency=300)
-    ch = tim.channel(2, duty_cycle=0.5, pin=buzzer)
+    ch = tim.channel(2, duty_cycle=0.5, pin=p2)
 
     if speed == "slow":
         interval = 0.30
@@ -123,7 +123,7 @@ redLED_p = Pin("P21", mode=Pin.OUT)
 greenLED_p = Pin("P20", mode=Pin.OUT)
 
 buttonPin = Pin("P11", mode=Pin.IN, pull=None) # Make GPIO P11 an input
-buzzer = Pin("P6") # Make GPIO P6 an output
+p2 = Pin("P6") # Make GPIO P6 an output
 
 
 buttonPin.callback(Pin.IRQ_FALLING, buttonEventCallback)
@@ -134,7 +134,7 @@ while True:
         Traffic_Soon_Stop(greenLED_t, yellowLED_t, redLED_t, redLED_p, greenLED_p)
         All_Stop(greenLED_t, yellowLED_t, redLED_t, redLED_p, greenLED_p)
         Yellow_Button_Off(yellowLED_b)
-        Pedestrian_Go(greenLED_p, redLED_p, buzzer)
-        Pedestrian_Soon_Stop(greenLED_t, yellowLED_t, redLED_t, redLED_p, greenLED_p, buzzer)
+        Pedestrian_Go(greenLED_p, redLED_p)
+        Pedestrian_Soon_Stop(greenLED_t, yellowLED_t, redLED_t, redLED_p, greenLED_p)
         Traffic_Soon_Go(greenLED_t, yellowLED_t, redLED_t, redLED_p, greenLED_p)        
     Traffic_Go(greenLED_t, yellowLED_t, redLED_t)
