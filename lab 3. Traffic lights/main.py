@@ -98,14 +98,14 @@ def Use_Buzzer(tim, speed, buzzer):
     ch = tim.channel(2, duty_cycle=0.5, pin=buzzer)
 
     if speed == "slow":
-        interval = 0.3
+        interval = 0.30
     elif speed == "fast":
         interval = 0.15
 
     while True:
         time_diff = utime.ticks_ms() - time_start
         if time_diff >= tim:
-            ch.duty_cycle(0)
+            #ch.duty_cycle(0)
             break
         tim = PWM(0, frequency=2637)
         ch.duty_cycle(0.5)
