@@ -29,8 +29,9 @@ def buttonEventCallback(arg):
         return
 
 
-def Traffic_Go(g_t, y_t, r_t):
+def Traffic_Go(g_t, y_t, r_t, r_p):
     print("\nTraffic is allowed to go, do not cross the road.")
+    r_p.value(1)
     g_t.value(1)
     y_t.value(0)
     r_t.value(0)
@@ -137,4 +138,4 @@ while True:
         Pedestrian_Go(greenLED_p, redLED_p)
         Pedestrian_Soon_Stop(greenLED_t, yellowLED_t, redLED_t, redLED_p, greenLED_p)
         Traffic_Soon_Go(greenLED_t, yellowLED_t, redLED_t, redLED_p, greenLED_p)        
-    Traffic_Go(greenLED_t, yellowLED_t, redLED_t)
+    Traffic_Go(greenLED_t, yellowLED_t, redLED_t, redLED_p)
