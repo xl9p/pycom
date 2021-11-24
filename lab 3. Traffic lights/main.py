@@ -145,11 +145,19 @@ buttonPin.callback(Pin.IRQ_FALLING, buttonEventCallback)
 
 while True:
     if BUTTON_PRESSED == True:
+        # Lighting on yellow button
         Yellow_Button_On(yellowLED_b)
+        # Lighting on yellow traffic light and red pedestrian light
         Traffic_Soon_Stop(greenLED_t, yellowLED_t, redLED_t, redLED_p, greenLED_p)
+        # Lighting on red traffic light and red pedestrian light
         All_Stop(greenLED_t, yellowLED_t, redLED_t, redLED_p, greenLED_p)
+        # Lighting off yellow button
         Yellow_Button_Off(yellowLED_b)
+        # Lighting on red traffic light and green pedestrian light, starting fast ticks
         Pedestrian_Go(greenLED_p, redLED_p)
+        # Making tick speed slower
         Pedestrian_Soon_Stop(greenLED_t, yellowLED_t, redLED_t, redLED_p, greenLED_p)
-        Traffic_Soon_Go(greenLED_t, yellowLED_t, redLED_t, redLED_p, greenLED_p)        
+        # Lighting on yellow, red traffic lights and red pedestrian light 
+        Traffic_Soon_Go(greenLED_t, yellowLED_t, redLED_t, redLED_p, greenLED_p)
+    # Lighting on green traffic light and red pedestrian light
     Traffic_Go(greenLED_t, yellowLED_t, redLED_t, redLED_p)
