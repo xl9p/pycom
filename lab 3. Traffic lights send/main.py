@@ -221,7 +221,7 @@ while True:
         elif not MQQT_ISCONNECTED:
             print("\nNot connected to MQTT, trying to connect in 1 second")
             time.sleep(1)
-            mqqt_connect("is222zf", "192.168.123.225", 1883)
+            mqqt_connect("is222zf", "192.168.84.98", 1883)
         else:
             if BUTTON_PRESSED:
                 # Lighting on yellow button
@@ -243,4 +243,3 @@ while True:
     except OSError as err:
         print("Failed: ", str(err))
         MQQT_ISCONNECTED = False
-
