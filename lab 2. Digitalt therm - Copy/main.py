@@ -15,7 +15,7 @@ lora = LoRa(mode=LoRa.LORAWAN, region=LoRa.EU868)
 app_eui = ubinascii.unhexlify('0000000000000000')
 app_key = ubinascii.unhexlify('40E004E1CD3531F4DEC22622E110CF1B')
 #uncomment to use LoRaWAN application provided dev_eui
-#dev_eui = ubinascii.unhexlify('70B3D549938EA1EE')
+dev_eui = ubinascii.unhexlify('70B3D57ED0049D35')
 
 # Uncomment for US915 / AU915 & Pygate
 # for i in range(0,8):
@@ -27,8 +27,8 @@ app_key = ubinascii.unhexlify('40E004E1CD3531F4DEC22622E110CF1B')
 
 # join a network using OTAA (Over the Air Activation)
 #uncomment below to use LoRaWAN application provided dev_eui
-lora.join(activation=LoRa.OTAA, auth=(app_eui, app_key), timeout=0)
-#lora.join(activation=LoRa.OTAA, auth=(dev_eui, app_eui, app_key), timeout=0)
+#lora.join(activation=LoRa.OTAA, auth=(app_eui, app_key), timeout=0)
+lora.join(activation=LoRa.OTAA, auth=(dev_eui, app_eui, app_key), timeout=0)
 
 # wait until the module has joined the network
 while not lora.has_joined():
