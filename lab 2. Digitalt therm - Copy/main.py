@@ -40,7 +40,7 @@ print('Joined')
 s = socket.socket(socket.AF_LORA, socket.SOCK_RAW)
 
 # set the LoRaWAN data rate
-s.setsockopt(socket.SOL_LORA, socket.SO_DR, 5)
+s.setsockopt(socket.SOL_LORA, socket.SO_DR, 0)
 
 # make the socket blocking
 # (waits for the data to be sent and for the 2 receive windows to expire)
