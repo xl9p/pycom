@@ -1,7 +1,6 @@
 import paho.mqtt.client as mqtt
 import time
 import random as rnd
-import sys
 
 
 def on_pb(client, userdata, result):
@@ -16,22 +15,19 @@ def send_bpm(client, data):
 def send_gyro(client, data):
      client.publish("is222zf/sensors/gyro", data)
 
-def send(client, vib, gyro, bpm, timestamp, deviceID):
-    client.publish("is222zf/sensorsData/", ('{ "deviceID":%i, "sensors":{ "vibration":%i, "gyroscope":%i, "bpm":%i}, "timestamp":%i }') % (deviceID, vib, gyro, bpm, timestamp))
-
 print("Sending")
 
 client = mqtt.Client("is222zf")
 client.on_publish = on_pb
 client.connect("localhost", 1883, 60)
 
-count = 0
 
-while count < 10:
+while True:
     try:
-        send(client, rnd.randint(0, 25000), rnd.randint(0, 25000), rnd.randint(0, 25000), time.time(), float(sys.winver))
+        send_bpm(client, 15)
+        send_vib(client, 13)
+        send_gyro(client, 12)
         time.sleep(1)
-        count += 1
     except OSError as err:
         print("Failed: ", str(err))
 
