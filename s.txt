@@ -1,0 +1,9 @@
+Varje projekt på TTN har sin egen MQTT servern. För att få notifikationer på vår app använde vi just MQTT.
+Först så tog vi credentials som behövs för att gå in på projektets MQTT servern, dvs användernam samt lösenord.
+Efter det så med hjälp av android studio skapar vi en projekt. Sedan importerar vi en MQTT bibliotek som kallas paho.
+Vi använder credentials som vi fick tidigare för att prenumerera på vår projektetets MQTT servern. 
+För att få medellande i koden i vår app så har vi speciella callback funktioner som anrops när en visst händelse händer.
+Till exempel så finns det en callback funktion onMessageReceived och den anropas varje gång man får någon medellande på MQTT servern.
+När onMessageReceived funktionen anrops så är det en json string som vi måste dekoda, 
+efter att vi dekodar den strängen så passar vi den till en lista som vi senare använder för att vissa en lista av notifikationer i appen,
+samt vissar vi en notifikation i notifikationspannellen på mobiltelefon.
